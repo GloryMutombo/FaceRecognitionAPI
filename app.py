@@ -85,7 +85,8 @@ def upload_image():
             return jsonify({'error': 'No selected file'}), 400
 
         # Create a subdirectory for each student number
-        student_upload_folder = os.path.join(app.config['UPLOAD_FOLDER'], 'students', student_number)
+        student_upload_folder = os.path.join(app.config['UPLOAD_FOLDER'], 'students', student_number + "_"
+                                             + full_name.replace(" ", ""))
         if not os.path.exists(student_upload_folder):
             os.makedirs(student_upload_folder)
 
@@ -95,7 +96,8 @@ def upload_image():
 
         # Process the image and student number here (you can add your logic)
 
-        return jsonify({'message': 'Image uploaded successfully', 'image_path': image_path, 'student_number': student_number}), 200
+        return jsonify({'message': 'Image uploaded successfully', 'image_path': image_path,
+                        'student_number': student_number}), 200
 
     except Exception as e:
         return jsonify({'error': f'An error occurred: {str(e)}'}), 500

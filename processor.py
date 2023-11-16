@@ -40,9 +40,15 @@ def predict_sim(new_img_path):
     # Step 9: Make a prediction
     prediction = make_prediction(distances, labels)
 
-    data = {'accuracy': round(accuracy * 100), 'prediction': prediction}
-
-    return data
+    if prediction != "Unknown":
+        predicted_student_number = prediction.split("_")[0]
+        predicted_full_name = prediction.split("_")[1]
+        data = {'accuracy': round(accuracy * 100), 'student_number': predicted_student_number,
+                'full_name': predicted_full_name}
+        return data
+    else:
+        data = {'accuracy': round(accuracy * 100), 'prediction': prediction}
+        return data
 
 
 # Step 1: Load and preprocess the images
