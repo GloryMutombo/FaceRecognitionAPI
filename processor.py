@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 
 
-def predict_sim(new_img_path, student_number):
+def predict_sim(new_img_path):
     # Define your dataset path
     dataset_path = 'uploads/students/'
 
@@ -40,8 +40,7 @@ def predict_sim(new_img_path, student_number):
     # Step 9: Make a prediction
     prediction = make_prediction(distances, labels)
 
-    data = {'accuracy': round(accuracy * 100), 'prediction': prediction,
-            'student_number': student_number}
+    data = {'accuracy': round(accuracy * 100), 'prediction': prediction}
 
     return data
 
